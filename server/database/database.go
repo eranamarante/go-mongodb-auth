@@ -13,10 +13,10 @@ import (
 )
 
 func DBinstance() *mongo.Client {
-	err := godotenv.Load(".env")
+	err := godotenv.Load(os.ExpandEnv("$GOPATH/src/github.com/eranamarante/go-mongodb-auth/.env"))
 
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatal(err)
 	}
 
 	MongoDb := os.Getenv("MONGODB_URL")
